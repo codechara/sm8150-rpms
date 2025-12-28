@@ -1,14 +1,14 @@
 %undefine        _debugsource_packages
 %global soc      sm8150
-%global tag      6.17
+%global commit   6963e3800a8e8059c5f01b01dd8e2a5e6a28209a
 Version:         6.17.0
-Release:         2.%{soc}%{?dist}
+Release:         3.%{soc}%{?dist}
 ExclusiveArch:   aarch64
 Name:            kernel
 Summary:         mainline kernel for %{soc}
 License:         GPLv2
 URL:             https://gitlab.com/%{soc}-mainline/linux
-Source0:         %{url}/-/archive/%{soc}/%{tag}/linux-%{soc}-%{tag}.tar.gz
+Source0:         %{url}/-/archive/%{commit}/linux-%{commit}.tar.gz
 Source1:         extra-%{soc}.config
 Patch0:          rotation.patch
 
@@ -27,7 +27,7 @@ BuildRequires:   bc bison dwarves diffutils elfutils-devel findutils gcc gcc-c++
 %{summary}
 
 %prep
-%autosetup -n linux-%{soc}-%{tag} -p1
+%autosetup -n linux-%{commit} -p1
 make defconfig %{soc}.config
 
 %build
